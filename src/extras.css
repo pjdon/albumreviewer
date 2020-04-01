@@ -1,0 +1,72 @@
+/* Display */
+
+.hidden {
+  display: none !important;
+}
+
+/* Icons */
+.ic-plus::after {
+  content: " 🞥";
+}
+.ic-share::after {
+	display: inline-block;
+	background-image: url(icon/publish.svg);
+	background-size: contain;
+	height: 14px;
+	width: 16px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	content: " ";
+	transform: translateY(5%);
+	margin-left: 4px;
+}
+
+/* Coloring */
+
+.bg-overlay {
+  background-color: #000000DD;
+}
+
+.bg-darkest {
+  background-color: #16171a;
+}
+
+.bg-darker {
+  background-color: #242529;
+}
+
+.bg-lighter {
+  background-color: #34373c;
+}
+
+.bg-blue {
+  background-color: #5c69ff;
+}
+
+.bg-blue:hover {
+  background-color: #737eff;
+}
+
+.bg-red {
+  background-color: #cf4a4a;
+}
+
+.bg-red:hover {
+  background-color: #ee8b8b;
+}
+
+.bg-green {
+  background-color: #46a76e;
+}
+
+.bg-green:hover {
+  background-color: #5eca8b;
+}
+
+.bg-grey {
+  background-color: #272727;
+}
+
+.bg-grey:hover {
+  background-color: #6b6b6b;
+}

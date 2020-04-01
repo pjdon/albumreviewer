@@ -1,0 +1,86 @@
+/* Base HTML elements */
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background-color: #16171a;
+  font-family: var(--font-family);
+  color: var(--text-color);
+
+  /* prevents dragged card from creating a second scrollbar */
+  overflow-y: hidden;
+}
+
+/* Text */
+h1 {
+  font-weight: bold;
+  font-size: 15px;
+  margin: 10px;
+}
+
+/* Button */
+button {
+  font-family: var(--font-family);
+  color: var(--text-color);
+
+  background-color: grey;
+  display: inline-block;
+  border: none;
+  border-radius: 3px;
+  padding: var(--gap);;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+  margin: var(--gap);;
+  transition-duration: 100ms;
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+
+
+/* Checkbox */
+input[type=checkbox] {
+  display: none;
+}
+input[type=checkbox] + label {
+  transform: translateY(2px);
+}
+input[type=checkbox] + label::after {
+  display: inline-block;
+  background-color: #6b778c;
+  width: 56px;
+  height: 26px;
+  border-radius: 12px;
+  content: " ";
+  transition-duration: 100ms;
+  cursor: pointer;
+}
+input[type=checkbox] + label:hover::after {
+  background-color: #768092;
+}
+input[type=checkbox]:checked + label::after {
+  background-color: #5c69ff;
+}
+input[type=checkbox]:checked + label:hover::after {
+  background-color: #737eff;
+}
+input[type=checkbox] + label::before {
+  display: inline-block;
+  position: relative;
+  transform: translate(24px, -4px);
+  background-color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 11px;
+  content: " ";
+  transition-duration: 100ms;
+  cursor: pointer;
+}
+input[type=checkbox]:checked + label::before {
+  transform: translate(51px, -4px);
+}
+input[type=checkbox]:focus + label::after {
+  outline: 2px dotted grey;
+}

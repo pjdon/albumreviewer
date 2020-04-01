@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Image Album Reviewer</title>
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="elements.css">
+  <link rel="stylesheet" href="extras.css">
+  <!-- Custom Components -->
+  <link rel="stylesheet" href="components/img-card.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+  <script src="config.js" type="text/javascript"></script>
+  <script src="tools.js" type="text/javascript"></script>
+  <!-- Custom Components -->
+  <script src="components/img-card.js" type="text/javascript"></script>
+</head>
+
+<body class="bg-darkest">
+  <div class="window tb-top">
+    <div class="toolbar bg-lighter">
+      <div>
+        <button class="bg-blue ic-plus" id='addimg-open'>Add Images</button>
+        <button class="bg-green ic-share" id='share-open'>Comments Summary</button>
+      </div>
+    </div>
+    <div id="gallery" class="gallery"></div>
+  </div>
+
+  <div id="overlay" class="bg-overlay hidden">
+    <div id="addimg" class="popup addimg bg-lighter hidden">
+      <div class="window tb-bottom">
+        <div class="flex-down">
+          <div class="textbox">
+            <textarea
+              id="addimg-block"
+              placeholder="URL for each image on a separate line"
+            ></textarea>
+          </div>
+        </div>
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button class="bg-green" id='addimg-done'>Add Images</button>
+          </div>
+          <div class="toolbar-right">
+            <button class="bg-red" id='addimg-cancel'>Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div id="comment" class="hidden">
+        <img id="comment-img" draggable=false ondragstart="return false;">
+        <div class="popup comment bg-lighter">
+          <div class="window tb-bottom">
+            <div class="flex-down">
+              <h1 id="comment-title"></h1>
+              <div class="textbox">
+                <textarea
+                  id="comment-block"
+                  placeholder="Write your comment here then click Save"
+                ></textarea>
+              </div>
+            </div>
+            <div class="toolbar">
+              <div>
+                <button class="bg-green" id='comment-save'>Save</button>
+              </div>
+              <div>
+                <button class="bg-red" id='comment-cancel'>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="share" class="popup share bg-lighter hidden">
+        <div class="window tb-bottom">
+          <div class="flex-down">
+            <div class="switchbox">
+              <input type="checkbox" id="check-commented">
+              <label for="check-commented"></label>
+              <h1>Exclude images without comments</h1>
+            </div>
+            <div class="textbox">
+              <textarea
+                id="share-block"
+              ></textarea>
+            </div>
+          </div>
+          <div class="toolbar">
+            <div>
+              <button class="bg-blue" id='share-copy'>
+                Copy Summary to Clipboard
+              </button>
+            </div>
+            <div class="toolbar-right">
+              <button class="bg-red" id='share-back'>Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <script src="app.js" type="text/javascript"></script>
+</body>
+
+</html>
