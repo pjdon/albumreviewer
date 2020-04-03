@@ -70,22 +70,66 @@ function openComment(imgSrc, cardIndex, savedComment, editedCallback) {
 // invalid images will be removed once they raise an error
 // valid images will maintain their order even if they finishing loading out of // order due to size differences
 const addQueue = new AsyncRefsQueue();
-//
-$("#addimg-done").click(() => {
-  // extract urls by splitting lines
-  const imgAddInput = $('#addimg-block')
+
+async function parseSingleImageSrc(src) {
+  // takes a proposed image src and returns a list of image src strings
+  // if the src is:
+  //   invalid an empty list is returned
+  //   a single url a list containing the url is returned
+  //   an album url, a list of image urls in the album is returned
+
+  if (src == "") {
+    return [];
+  }
+  else {
+    // check album matches
+
+    // imgur
+    const match_imgur = src.match(
+      /^(?:https?:\/\/)?imgur\.com\/a\/([a-zA-Z0-9]+)/
+    )
+    if (match_imgur) {
+      const album_id = match_imgur[1];
+
+      const response = await fetch(
+        `https://imgrvr.herokuapp.com/album/imgur/${album_id}`
+      );
+
+      const response_json = await response.json();
+
+      if (response_json.success) {
+        return response_json.image_urls;
+      }
+    }
+    else {
+      // no album matches
+      return [src]
+    }
+
+  }
+}
+
+async function addImages() {
+  // handle adding images from textarea once done button is pressed
+
+  const imgAddInput = $('#addimg-block');
   const imgSrcs = imgAddInput.val().trim().split('\n');
   imgAddInput.val("");
 
-  $("#gallery").append(imgSrcs.map(src => {
-    if (src) {
+  for (const src of imgSrcs) {
+    const parsedSrcs = await parseSingleImageSrc(src);
+
+    $("#gallery").append(parsedSrcs.map(src => {
+      debugger;
       return createImgCard(src, addQueue, openComment);
-    }
-  }));
+    }));
+  }
 
   displayOverlay.hide();
   displayAddimg.hide();
-});
+}
+
+$("#addimg-done").click(() => addImages());
 
 // Generate the image order and comment summary
 async function setCommentSummary() {
@@ -119,16 +163,3 @@ async function buildChangesSummary(onlyCommented) {
   const summary = lines.join("\n\n");
   return summary;
 }
-
-// Testing:
-// preadd album block
-$("#addimg-block").val(`
-https://i.imgur.com/ymu3DCM.jpg
-https://i.imgur.com/wKwPbW6.jpg
-https://i.imgur.com/aILGA3i.jpg
-https://i.imgur.com/Pg4vCnb.jpg
-https://i.imgur.com/Imh8FO9.jpg
-https://i.imgur.com/Gqv5axZ.jpg
-https://i.imgur.com/xnUKrOM.jpg
-https://i.imgur.com/2CYQk57.jpg
-`);

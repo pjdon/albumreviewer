@@ -10,7 +10,7 @@
 }
 .ic-share::after {
 	display: inline-block;
-	background-image: url(icon/publish.svg);
+	background-image: url(../icon/publish.svg);
 	background-size: contain;
 	height: 14px;
 	width: 16px;
