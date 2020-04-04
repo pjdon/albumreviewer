@@ -120,7 +120,6 @@ async function addImages() {
     const parsedSrcs = await parseSingleImageSrc(src);
 
     $("#gallery").append(parsedSrcs.map(src => {
-      debugger;
       return createImgCard(src, addQueue, openComment);
     }));
   }
