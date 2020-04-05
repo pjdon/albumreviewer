@@ -4,7 +4,7 @@
 const displayOverlay = displayControls("#overlay");
 const displayAddimg = displayControls("#addimg");
 const displayComment = displayControls("#comment");
-const displayShare = displayControls("#share");
+const displaypubl = displayControls("#publ");
 
 // Button Functionality
 // open the image adding popup
@@ -25,22 +25,22 @@ $("#comment-cancel").click(() => {
 })
 
 // open the sharing popup
-$("#share-open").click(() => {
-  displayShare.unhide();
+$("#publ-open").click(() => {
+  displaypubl.unhide();
   displayOverlay.unhide();
 
   setCommentSummary();
 });
 // close the sharing popup
-$("#share-back").click(() => {
+$("#publ-back").click(() => {
   displayOverlay.hide();
-  displayShare.hide();
+  displaypubl.hide();
 });
 // recalculate the comment summary if any of the conditions change
 $("#check-commented").change(setCommentSummary);
 // copy the summary to the clipboard when
-$("#share-copy").click(() => {
-  const block = $("#share-block").get(0);
+$("#publ-copy").click(() => {
+  const block = $("#publ-block").get(0);
   const storedSelection = [block.selectionEnd, block.selectionStart];
   block.select();
   document.execCommand("copy");
@@ -135,7 +135,7 @@ async function setCommentSummary() {
   // set the sharing comment by passing gui states to buildChangesSummary
   const onlyCommented = $("#check-commented").prop("checked");
   const summary = await buildChangesSummary(onlyCommented);
-  $("#share-block").val(summary);
+  $("#publ-block").val(summary);
 }
 
 async function buildChangesSummary(onlyCommented) {

@@ -8,7 +8,7 @@
 .ic-plus::after {
   content: " 🞥";
 }
-.ic-share::after {
+.ic-publ::after {
 	display: inline-block;
 	background-image: url(../icon/publish.svg);
 	background-size: contain;
